@@ -8,9 +8,9 @@ namespace Public_Chat.Hubs
 {
     public class ChatHub : Hub                                              // inherit this
     {
-        public Task SendMessage1(string user, string message)               // Two parameters accepted
+        public Task SendMessage1(string user, string message, DateTime date)               // Two parameters accepted
         {
-            return Clients.All.SendAsync("ReceiveOne", user, message);    // Note this 'ReceiveOne' 
+            return Clients.All.SendAsync("ReceiveOne", user, message, date);    // Note this 'ReceiveOne' 
         }
     }
 }

@@ -9,5 +9,6 @@ namespace Public_Chat.ReqDto
     {
         public string user { get; set; }
         public string msgText { get; set; }
+        public DateTime msgDate { get; set; }
     }
 }

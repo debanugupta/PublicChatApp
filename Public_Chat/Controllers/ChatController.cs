@@ -25,7 +25,7 @@ namespace Public_Chat.Controllers
         [HttpPost]
         public IActionResult SendRequest([FromBody] MessageDto msg)
         {
-            _hubContext.Clients.All.SendAsync("ReceiveOne", msg.user, msg.msgText);
+            _hubContext.Clients.All.SendAsync("ReceiveOne", msg.user, msg.msgText, msg.msgDate);
             return Ok();
         }
     }

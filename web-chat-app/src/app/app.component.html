@@ -1,10 +1,11 @@
+
 <div class="ud-header">
   <h2 class="text-center">Public Chat</h2>
 </div>
 <div class="ud-body">
   <div class="msg-box">
-    <ul>
-      <li *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.user === msgDto.user ? 'in-msg' : 'ex-msg'">{{mObj.user}} :<br /><span class="msg-italic-style">{{mObj.msgText}}</span></li>
+    <ul >
+      <li  *ngFor="let mObj of msgInboxArray" [ngClass]="mObj.user === msgDto.user ? 'in-msg' : 'ex-msg'">{{mObj.user}}&nbsp;{{mObj.msgDate | date:'medium'}} <br/> <span >{{mObj.msgText}}</span></li>
     </ul>
   </div>
   <div class="ud-flex-row">
@@ -13,3 +14,5 @@
   </div>
   <input type="text" placeholder="Your name" class="name-box" [(ngModel)]="msgDto.user" />
 </div>
+
+
