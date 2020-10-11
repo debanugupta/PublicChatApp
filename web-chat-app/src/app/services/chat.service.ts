@@ -21,7 +21,7 @@ export class ChatService {
     this.connection.onclose(async () => {
       await this.start();
     });
-   this.connection.on("ReceiveOne", (user, message,date) => { this.mapReceivedMessage(user, message,date); });
+   this.connection.on("ReceiveOne", (msg) => { this.mapReceivedMessage(msg); });
    this.start();                 
   }
 
@@ -37,17 +37,17 @@ export class ChatService {
     } 
   }
 
-  private mapReceivedMessage(user: string, message: string, date: Date): void {
-    this.receivedMessageObject.user = user;
-    this.receivedMessageObject.msgText = message;
-    this.receivedMessageObject.msgDate = date;
+  private mapReceivedMessage(msg : MessageDto): void {
+    this.receivedMessageObject.user = msg.user;
+    this.receivedMessageObject.msgText = msg.msgText;
+    this.receivedMessageObject.msgDate = msg.msgDate;
     this.sharedObj.next(this.receivedMessageObject);
  }
 
   /* ****************************** Public Mehods **************************************** */
 
   // Calls the controller method
-  public broadcastMessage(msgDto: any) {
+  public broadcastMessage(msgDto: MessageDto) {
     this.http.post(this.POST_URL, msgDto).subscribe(data => console.log(data));
     // this.connection.invoke("SendMessage1", msgDto.user, msgDto.msgText).catch(err => console.error(err));    // This can invoke the server method named as "SendMethod1" directly.
   }
